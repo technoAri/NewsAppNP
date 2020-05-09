@@ -1,9 +1,6 @@
 package com.assignment.newsappnp.ui.main;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class NewsModel {
     @SerializedName("urlToImage")
@@ -14,6 +11,17 @@ public class NewsModel {
     private String newsDescription;
     @SerializedName("publishedAt")
     private String timestamp;
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
+    }
+
+    @SerializedName("source")
+    Source source;
 
     public String getThumbnailImg() {
         return thumbnailImg;
@@ -46,4 +54,29 @@ public class NewsModel {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
+    public class Source{
+        @SerializedName("id")
+        String id;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @SerializedName("name")
+        String name;
+    }
 }
+

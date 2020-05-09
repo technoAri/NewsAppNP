@@ -10,17 +10,20 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.assignment.newsappnp.R;
 
+import java.util.ArrayList;
+
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+    int mNumOfTabs;
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, int mNumOfTabs, ArrayList<String> tabTitle) {
         super(fm);
         mContext = context;
     }
@@ -32,15 +35,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return PlaceholderFragment.newInstance(position + 1);
     }
 
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mContext.getResources().getString(TAB_TITLES[position]);
-    }
+//    @Nullable
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//        return mContext.getResources().getString(TAB_TITLES[position]);
+//    }
 
     @Override
     public int getCount() {
         // Show 2 total pages.
-        return 2;
+        return mNumOfTabs;
     }
 }

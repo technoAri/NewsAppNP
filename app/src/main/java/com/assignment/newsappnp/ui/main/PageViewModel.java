@@ -42,7 +42,7 @@ public class PageViewModel extends ViewModel {
     }
 
     private void loadNews() {
-        Retrofit retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new retrofit2.Retrofit.Builder()
                 .baseUrl(NewsApi.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -56,11 +56,8 @@ public class PageViewModel extends ViewModel {
             public void onResponse(Call<NewsList> call, Response<NewsList> response) {
 
                 //finally we are setting the list to our MutableLiveData
-//                newsList.setValue(response.body().get);
-//                news = response.body().getNewsArray();
+                generateNoticeList((ArrayList<NewsModel>) response.body().getNewsArray());
                 System.out.println("NewsTitle"+response.body().getNewsArray());
-                NewsModel newsModel = new NewsModel();
-                System.out.println("NewsTitle" + newsModel.getNewsTitle());
             }
 
             @Override
@@ -68,6 +65,34 @@ public class PageViewModel extends ViewModel {
                 System.out.println(call);
             }
         });
+    }
+
+    private void generateNoticeList(ArrayList<NewsModel> newsArrayList) {
+        System.out.println("NewsTitle11"+newsArrayList.get(0).getSource().name);
+
+//        private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
+//            @Override
+//            public String apply(Integer input) {
+//                return "Hello world from section: " + input;
+//            }
+//        });
+//        recyclerView = findViewById(R.id.recycler_view_notice_list);
+//        adapter = new NoticeAdapter(noticeArrayList);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapter);
+
+//        for (int l = 0; l < 6; l++) {
+//
+//            tabs.addTab(tabs.newTab().setText("Pitch-" + l));
+//            tabTitle.add("P - " + l);
+//        }
+//
+//        SectionsPagerAdapter adapter = new SectionsPagerAdapter
+//                (getSupportFragmentManager(), tabs.getTabCount(), tabTitle);
+//        viewPager.setAdapter(adapter);
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
+
     }
 
     public void setIndex(int index) {

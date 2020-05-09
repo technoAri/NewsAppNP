@@ -13,8 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.assignment.newsappnp.ui.main.SectionsPagerAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,12 +27,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
+        ArrayList<String> tabTitle = new ArrayList<>();
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), tabs.getTabCount(), tabTitle);
+        viewPager.setAdapter(sectionsPagerAdapter);
 
         pageViewModel.getNewsSources();
         tabs.setupWithViewPager(viewPager);
+
+        for (int l = 0; l < 6; l++) {
+
+            tabs.addTab(tabs.newTab().setText("Pitch-" + l));
+            tabTitle.add("P - " + l);
+        }
+
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter
+                (this, getSupportFragmentManager(), tabs.getTabCount(), tabTitle);
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
     }
 }
