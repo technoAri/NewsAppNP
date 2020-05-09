@@ -2,6 +2,7 @@ package com.assignment.newsappnp;
 
 import android.os.Bundle;
 
+import com.assignment.newsappnp.ui.main.PageViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -17,6 +18,8 @@ import com.assignment.newsappnp.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
+    PageViewModel pageViewModel = new PageViewModel();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
+
+        pageViewModel.getNewsSources();
         tabs.setupWithViewPager(viewPager);
     }
 }
