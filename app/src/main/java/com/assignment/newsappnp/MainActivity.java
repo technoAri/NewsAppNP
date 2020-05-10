@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 tabs.setupWithViewPager(viewPager);
                 viewPager.setAdapter(sectionsPagerAdapter);
             }
-        }, 1000);
+        }, 1500);
 
 //        for (int l = 0; l < 6; l++) {
 //
