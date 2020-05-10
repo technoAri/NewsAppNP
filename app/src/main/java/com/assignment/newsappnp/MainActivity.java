@@ -1,5 +1,6 @@
 package com.assignment.newsappnp;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import com.assignment.newsappnp.ui.main.PageViewModel;
@@ -14,6 +15,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.assignment.newsappnp.ui.main.SectionsPagerAdapter;
@@ -35,12 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
         pageViewModel.getNewsSources();
 
+        final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 tabs.setupWithViewPager(viewPager);
                 viewPager.setAdapter(sectionsPagerAdapter);
+                dialog.dismiss();
             }
         }, 1500);
 
