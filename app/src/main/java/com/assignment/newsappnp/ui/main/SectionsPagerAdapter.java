@@ -7,9 +7,11 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.assignment.newsappnp.R;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 
 /**
@@ -18,12 +20,12 @@ import java.util.ArrayList;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    int mNumOfTabs;
-    @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
+    int mNumOfTabs = 10;
+//    @StringRes
+    private static final String[] TAB_TITLES = PageViewModel.TAB_TITLES;
     private final Context mContext;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, int mNumOfTabs, ArrayList<String> tabTitle) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
@@ -35,11 +37,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return PlaceholderFragment.newInstance(position + 1);
     }
 
-//    @Nullable
-//    @Override
-//    public CharSequence getPageTitle(int position) {
-//        return mContext.getResources().getString(TAB_TITLES[position]);
-//    }
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        System.out.println("NewsTitle22" + PageViewModel.TAB_TITLES[position]);
+        return PageViewModel.TAB_TITLES[position];
+    }
 
     @Override
     public int getCount() {

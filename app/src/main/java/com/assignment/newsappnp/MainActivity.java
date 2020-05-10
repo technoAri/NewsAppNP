@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,24 +28,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        TabLayout tabs = findViewById(R.id.tabs);
+        final ViewPager viewPager = findViewById(R.id.view_pager);
+        final TabLayout tabs = findViewById(R.id.tabs);
         ArrayList<String> tabTitle = new ArrayList<>();
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), tabs.getTabCount(), tabTitle);
-        viewPager.setAdapter(sectionsPagerAdapter);
+        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 
         pageViewModel.getNewsSources();
-        tabs.setupWithViewPager(viewPager);
 
-        for (int l = 0; l < 6; l++) {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tabs.setupWithViewPager(viewPager);
+                viewPager.setAdapter(sectionsPagerAdapter);
+            }
+        }, 1000);
 
-            tabs.addTab(tabs.newTab().setText("Pitch-" + l));
-            tabTitle.add("P - " + l);
-        }
-
-        SectionsPagerAdapter adapter = new SectionsPagerAdapter
-                (this, getSupportFragmentManager(), tabs.getTabCount(), tabTitle);
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+//        for (int l = 0; l < 6; l++) {
+//
+//            tabs.addTab(tabs.newTab().setText("Pitch-" + l));
+//            tabTitle.add("P - " + l);
+//        }
+//
+//        SectionsPagerAdapter adapter = new SectionsPagerAdapter
+//                (this, getSupportFragmentManager(), tabs.getTabCount(), tabTitle);
+//        viewPager.setAdapter(adapter);
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
     }
 }

@@ -1,5 +1,6 @@
 package com.assignment.newsappnp.ui.main;
 
+import androidx.annotation.StringRes;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -22,6 +23,7 @@ public class PageViewModel extends ViewModel {
     private MutableLiveData<List<NewsModel>> newsList;
 //    private List<String> newsList = new ArrayList<String>();
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
+    public static String[] TAB_TITLES = new String[10];
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
         @Override
         public String apply(Integer input) {
@@ -69,6 +71,10 @@ public class PageViewModel extends ViewModel {
 
     private void generateNoticeList(ArrayList<NewsModel> newsArrayList) {
         System.out.println("NewsTitle11"+newsArrayList.get(0).getSource().name);
+        for (int i = 0; i < 10; i++) {
+            TAB_TITLES[i] = newsArrayList.get(i).getSource().name;
+            System.out.println("NewsTitle11"+TAB_TITLES[i]);
+        }
 
 //        private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
 //            @Override
