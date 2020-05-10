@@ -47,13 +47,22 @@ public class PlaceholderFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        final TextView textView = root.findViewById(R.id.tv_title);
-//        pageViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        final TextView newsTitle = root.findViewById(R.id.tv_title);
+        final TextView newsDesc = root.findViewById(R.id.tv_description);
+        pageViewModel.getTitleText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                newsTitle.setText(s);
+//                newsDesc.setText(s);
+            }
+        });
+
+        pageViewModel.getDescription().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                newsDesc.setText(s);
+            }
+        });
         return root;
     }
 }

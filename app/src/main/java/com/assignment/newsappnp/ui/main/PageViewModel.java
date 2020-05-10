@@ -21,15 +21,11 @@ public class PageViewModel extends ViewModel {
     String country = "in";
     String apiKey = "4a1eabbbdffb429ebbcd12771e5d684c";
     private MutableLiveData<List<NewsModel>> newsList;
-//    private List<String> newsList = new ArrayList<String>();
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
     public static String[] TAB_TITLES = new String[10];
-    private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
-        @Override
-        public String apply(Integer input) {
-            return "Hello world from section: " + input;
-        }
-    });
+    public static String[] newsTitles = new String[10];
+    public static String[] newsDescriptions = new String[10];
+
 
     public LiveData<List<NewsModel>> getNewsSources() {
         //if the list is null
@@ -72,40 +68,35 @@ public class PageViewModel extends ViewModel {
     private void generateNoticeList(ArrayList<NewsModel> newsArrayList) {
         System.out.println("NewsTitle11"+newsArrayList.get(0).getSource().name);
         for (int i = 0; i < 10; i++) {
+//            finalNewsList.add(newsArrayList.get(i));
             TAB_TITLES[i] = newsArrayList.get(i).getSource().name;
+            newsTitles[i] = newsArrayList.get(i).getNewsTitle();
+            newsDescriptions[i] = newsArrayList.get(i).getNewsDescription();
             System.out.println("NewsTitle11"+TAB_TITLES[i]);
         }
-
-//        private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
-//            @Override
-//            public String apply(Integer input) {
-//                return "Hello world from section: " + input;
-//            }
-//        });
-//        recyclerView = findViewById(R.id.recycler_view_notice_list);
-//        adapter = new NoticeAdapter(noticeArrayList);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapter);
-
-//        for (int l = 0; l < 6; l++) {
-//
-//            tabs.addTab(tabs.newTab().setText("Pitch-" + l));
-//            tabTitle.add("P - " + l);
-//        }
-//
-//        SectionsPagerAdapter adapter = new SectionsPagerAdapter
-//                (getSupportFragmentManager(), tabs.getTabCount(), tabTitle);
-//        viewPager.setAdapter(adapter);
-//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
-
     }
 
     public void setIndex(int index) {
         mIndex.setValue(index);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<String> getTitleText() {
+        LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
+            @Override
+            public String apply(Integer input) {
+                return newsTitles[input-1];
+            }
+        });
+        return text;
+    }
+
+    public LiveData<String> getDescription() {
+        LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
+            @Override
+            public String apply(Integer input) {
+                return newsDescriptions[input-1];
+            }
+        });
+        return text;
     }
 }
