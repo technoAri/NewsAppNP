@@ -32,6 +32,7 @@ public class PageViewModel extends ViewModel {
     public static String[] timeStamp = new String[Strings.mNumOfTabs];
     public static String[] thumbnailURL = new String[Strings.mNumOfTabs];
     public static String[] urlToNews = new String[Strings.mNumOfTabs];
+    public static String[] author = new String[Strings.mNumOfTabs];
 
     public LiveData<List<NewsModel>> getNewsSources() {
         if (newsList == null) {
@@ -80,6 +81,7 @@ public class PageViewModel extends ViewModel {
             timeStamp[i] = newsArrayList.get(i).getTimestamp();
             thumbnailURL[i] = newsArrayList.get(i).getThumbnailImg();
             urlToNews[i] = newsArrayList.get(i).getUrl();
+            author[i] = newsArrayList.get(i).getAuthor();
 //            setUrlToNews(urlToNews[i], i);
             System.out.println("NewsTitle11"+timeStamp[i]);
         }
@@ -137,6 +139,16 @@ public class PageViewModel extends ViewModel {
             @Override
             public String apply(Integer input) {
                 return urlToNews[input-1];
+            }
+        });
+        return text;
+    }
+
+    public LiveData<String> getAuthor() {
+        LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
+            @Override
+            public String apply(Integer input) {
+                return author[input-1];
             }
         });
         return text;

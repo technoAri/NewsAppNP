@@ -56,6 +56,7 @@ public class PlaceholderFragment extends Fragment {
         final TextView newsDesc = root.findViewById(R.id.tv_description);
         final TextView timestamp = root.findViewById(R.id.tv_timestamp);
         final TextView readMore = root.findViewById(R.id.tv_read_more);
+        final TextView author = root.findViewById(R.id.tv_author);
         final ImageView thumbnail = root.findViewById(R.id.iv_thumbnail);
 
         pageViewModel.getTitleText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -76,6 +77,13 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 timestamp.setText(s);
+            }
+        });
+
+        pageViewModel.getAuthor().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                author.setText(s + " | ");
             }
         });
 

@@ -13,7 +13,16 @@ public class NewsModel {
     private String timestamp;
     @SerializedName("url")
     private String url;
+    @SerializedName("author")
+    private String author;
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getUrl() {
         return url;

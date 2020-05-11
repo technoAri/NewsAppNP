@@ -26,6 +26,26 @@
         android:textColor="@color/colorBlack">
     </TextView>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/app_margin">
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/time_font">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/time_font">
+        </TextView>
+    </LinearLayout>
     <TextView
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
@@ -37,22 +57,12 @@
     </TextView>
 
     <TextView
-        android:id="@+id/tv_timestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin = "@dimen/app_margin"
-        android:layout_gravity="center"
-        android:textSize="@dimen/time_font"
-        android:textColor="@color/colorBlack">
-    </TextView>
-
-    <TextView
         android:id="@+id/tv_read_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin = "@dimen/app_margin"
         android:layout_gravity="center"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:textColor="@color/colorWhite"
         android:text="  Read More >  ">
     </TextView>
