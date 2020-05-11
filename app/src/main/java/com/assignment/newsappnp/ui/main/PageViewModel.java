@@ -1,6 +1,5 @@
 package com.assignment.newsappnp.ui.main;
 
-import androidx.annotation.StringRes;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,11 +8,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.assignment.newsappnp.common.Strings;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -74,16 +71,19 @@ public class PageViewModel extends ViewModel {
     private void generateNoticeList(ArrayList<NewsModel> newsArrayList) {
         System.out.println("NewsTitle11"+newsArrayList.get(0).getSource().name);
         for (int i = 0; i < 10; i++) {
-//            finalNewsList.add(newsArrayList.get(i));
             TAB_TITLES[i] = newsArrayList.get(i).getSource().name;
             newsTitles[i] = newsArrayList.get(i).getNewsTitle();
             newsDescriptions[i] = newsArrayList.get(i).getNewsDescription();
-            timeStamp[i] = newsArrayList.get(i).getTimestamp();
             thumbnailURL[i] = newsArrayList.get(i).getThumbnailImg();
             urlToNews[i] = newsArrayList.get(i).getUrl();
             author[i] = newsArrayList.get(i).getAuthor();
-//            setUrlToNews(urlToNews[i], i);
-            System.out.println("NewsTitle11"+timeStamp[i]);
+
+            try {
+                timeStamp[i] = String.valueOf((new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX").
+                        parse(newsArrayList.get(i).getTimestamp()))).substring(0, 16);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -131,9 +131,6 @@ public class PageViewModel extends ViewModel {
         return text;
     }
 
-//    public void setUrlToNews(String newsUrl, int position) {
-//        urlToNews[position] = newsUrl;
-//    }
     public LiveData<String> getUrlToNews() {
         LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override

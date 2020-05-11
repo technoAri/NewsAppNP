@@ -3,17 +3,10 @@ package com.assignment.newsappnp.ui.main;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
-
-import com.assignment.newsappnp.R;
 import com.assignment.newsappnp.common.Strings;
-
-import java.lang.annotation.Target;
-import java.util.ArrayList;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
