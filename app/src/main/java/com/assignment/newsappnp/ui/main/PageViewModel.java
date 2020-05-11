@@ -7,7 +7,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,10 +29,13 @@ public class PageViewModel extends ViewModel {
     public static String[] TAB_TITLES = new String[10];
     public static String[] newsTitles = new String[10];
     public static String[] newsDescriptions = new String[10];
+    public static String[] timeStamp = new String[10];
+    public static String[] thumbnailURL = new String[10];
+    public static String[] urlToNews = new String[10];
+    public static String formattedTime;
 
 
     public LiveData<List<NewsModel>> getNewsSources() {
-        //if the list is null
         if (newsList == null) {
             newsList = new MutableLiveData<List<NewsModel>>();
             //we will load it asynchronously from server in this method
@@ -72,7 +79,11 @@ public class PageViewModel extends ViewModel {
             TAB_TITLES[i] = newsArrayList.get(i).getSource().name;
             newsTitles[i] = newsArrayList.get(i).getNewsTitle();
             newsDescriptions[i] = newsArrayList.get(i).getNewsDescription();
-            System.out.println("NewsTitle11"+TAB_TITLES[i]);
+            timeStamp[i] = newsArrayList.get(i).getTimestamp();
+            thumbnailURL[i] = newsArrayList.get(i).getThumbnailImg();
+            urlToNews[i] = newsArrayList.get(i).getUrl();
+//            setUrlToNews(urlToNews[i], i);
+            System.out.println("NewsTitle11"+timeStamp[i]);
         }
     }
 
@@ -95,6 +106,39 @@ public class PageViewModel extends ViewModel {
             @Override
             public String apply(Integer input) {
                 return newsDescriptions[input-1];
+            }
+        });
+        return text;
+    }
+
+    public LiveData<String> getTimeStamp() {
+        LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
+            @Override
+            public String apply(Integer input) {
+                return timeStamp[input-1];
+            }
+        });
+        return text;
+    }
+
+    public LiveData<String> getThumbnailUrl() {
+        LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
+            @Override
+            public String apply(Integer input) {
+                return thumbnailURL[input-1];
+            }
+        });
+        return text;
+    }
+
+//    public void setUrlToNews(String newsUrl, int position) {
+//        urlToNews[position] = newsUrl;
+//    }
+    public LiveData<String> getUrlToNews() {
+        LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
+            @Override
+            public String apply(Integer input) {
+                return urlToNews[input-1];
             }
         });
         return text;

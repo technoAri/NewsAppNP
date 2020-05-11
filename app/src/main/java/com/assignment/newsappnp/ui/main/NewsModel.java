@@ -11,6 +11,17 @@ public class NewsModel {
     private String newsDescription;
     @SerializedName("publishedAt")
     private String timestamp;
+    @SerializedName("url")
+    private String url;
+
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Source getSource() {
         return source;
