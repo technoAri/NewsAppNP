@@ -2,6 +2,10 @@ package com.assignment.newsappnp.ui.main;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *  Model for the Objects inside the JSON_ARRAY form the response
+ */
+
 public class NewsModel {
     @SerializedName("urlToImage")
     private String thumbnailImg;

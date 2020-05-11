@@ -1,4 +1,4 @@
-package com.assignment.newsappnp;
+package com.assignment.newsappnp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class WebViewActivity extends AppCompatActivity {
+import com.assignment.newsappnp.R;
+
+public class NewsDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

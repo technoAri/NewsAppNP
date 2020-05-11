@@ -1,4 +1,4 @@
-package com.assignment.newsappnp.ui.main;
+package com.assignment.newsappnp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,20 +15,21 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.assignment.newsappnp.R;
-import com.assignment.newsappnp.WebViewActivity;
+import com.assignment.newsappnp.Activities.NewsDetailsActivity;
+import com.assignment.newsappnp.ui.main.PageViewModel;
 import com.squareup.picasso.Picasso;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class TabsPageFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static TabsPageFragment newInstance(int index) {
+        TabsPageFragment fragment = new TabsPageFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -99,7 +100,7 @@ public class PlaceholderFragment extends Fragment {
                 readMore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
                         intent.putExtra("URL", s);
                         startActivity(intent);
                     }

@@ -5,7 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class NewsList {
+/**
+ *  Model for the List<Objects> form the response
+ */
+public class NewsListModel {
     @SerializedName("articles")
     @Expose
     private List<NewsModel> newsList = null;

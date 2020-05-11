@@ -1,17 +1,19 @@
-package com.assignment.newsappnp;
+package com.assignment.newsappnp.Activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
+import com.assignment.newsappnp.R;
 import com.assignment.newsappnp.ui.main.PageViewModel;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Handler;
-import com.assignment.newsappnp.ui.main.SectionsPagerAdapter;
-import java.util.ArrayList;
+import com.assignment.newsappnp.Adapters.TabsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
+    // View Model
     PageViewModel pageViewModel = new PageViewModel();
 
     @Override
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ViewPager viewPager = findViewById(R.id.view_pager);
         final TabLayout tabs = findViewById(R.id.tabs);
-        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        final TabsPagerAdapter tabsPagerAdapter = new TabsPagerAdapter(this, getSupportFragmentManager());
 
         pageViewModel.getNewsSources();
 
@@ -28,11 +30,12 @@ public class MainActivity extends AppCompatActivity {
         dialog.setMessage("Please Wait...");
         dialog.show();
         final Handler handler = new Handler();
+        // applying the delay as the title of the tabs are getting set from API response
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 tabs.setupWithViewPager(viewPager);
-                viewPager.setAdapter(sectionsPagerAdapter);
+                viewPager.setAdapter(tabsPagerAdapter);
                 dialog.dismiss();
             }
         }, 1500);

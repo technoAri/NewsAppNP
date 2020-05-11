@@ -19,6 +19,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ *  View Model for for MainActivity
+ *  TabsPageFragment uses the arrays and get methods in order to set the data to the view items
+ */
+
 public class PageViewModel extends ViewModel {
 
     private MutableLiveData<List<NewsModel>> newsList;
@@ -43,31 +48,32 @@ public class PageViewModel extends ViewModel {
     }
 
     private void loadNews() {
+        // Network call using retrofit
         Retrofit retrofit = new retrofit2.Retrofit.Builder()
                 .baseUrl(Strings.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         NewsApi newsApi = retrofit.create(NewsApi.class);
-        Call<NewsList> call = newsApi.getNewsSources(Strings.country, Strings.apiKey);
+        Call<NewsListModel> call = newsApi.getNewsSources(Strings.country, Strings.apiKey);
 
 
-        call.enqueue(new Callback<NewsList>() {
+        call.enqueue(new Callback<NewsListModel>() {
             @Override
-            public void onResponse(Call<NewsList> call, Response<NewsList> response) {
+            public void onResponse(Call<NewsListModel> call, Response<NewsListModel> response) {
 
                 //finally we are setting the list to our MutableLiveData
                 generateNoticeList((ArrayList<NewsModel>) response.body().getNewsArray());
-                System.out.println("NewsTitle"+response.body().getNewsArray());
             }
 
             @Override
-            public void onFailure(Call<NewsList> call, Throwable t) {
+            public void onFailure(Call<NewsListModel> call, Throwable t) {
                 System.out.println(call);
             }
         });
     }
 
+    // method to store data in the static arrays in order to set them in the Fragment
     private void generateNoticeList(ArrayList<NewsModel> newsArrayList) {
         System.out.println("NewsTitle11"+newsArrayList.get(0).getSource().name);
         for (int i = 0; i < 10; i++) {
