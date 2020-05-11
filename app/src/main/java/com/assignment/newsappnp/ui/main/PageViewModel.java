@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.assignment.newsappnp.common.Strings;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,18 +24,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PageViewModel extends ViewModel {
 
-    String country = "in";
-    String apiKey = "4a1eabbbdffb429ebbcd12771e5d684c";
     private MutableLiveData<List<NewsModel>> newsList;
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
-    public static String[] TAB_TITLES = new String[10];
-    public static String[] newsTitles = new String[10];
-    public static String[] newsDescriptions = new String[10];
-    public static String[] timeStamp = new String[10];
-    public static String[] thumbnailURL = new String[10];
-    public static String[] urlToNews = new String[10];
-    public static String formattedTime;
-
+    public static String[] TAB_TITLES = new String[Strings.mNumOfTabs];
+    public static String[] newsTitles = new String[Strings.mNumOfTabs];
+    public static String[] newsDescriptions = new String[Strings.mNumOfTabs];
+    public static String[] timeStamp = new String[Strings.mNumOfTabs];
+    public static String[] thumbnailURL = new String[Strings.mNumOfTabs];
+    public static String[] urlToNews = new String[Strings.mNumOfTabs];
 
     public LiveData<List<NewsModel>> getNewsSources() {
         if (newsList == null) {
@@ -48,12 +46,12 @@ public class PageViewModel extends ViewModel {
 
     private void loadNews() {
         Retrofit retrofit = new retrofit2.Retrofit.Builder()
-                .baseUrl(NewsApi.BASE_URL)
+                .baseUrl(Strings.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         NewsApi newsApi = retrofit.create(NewsApi.class);
-        Call<NewsList> call = newsApi.getNewsSources(country, apiKey);
+        Call<NewsList> call = newsApi.getNewsSources(Strings.country, Strings.apiKey);
 
 
         call.enqueue(new Callback<NewsList>() {

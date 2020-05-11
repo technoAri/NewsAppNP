@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.assignment.newsappnp.R;
+import com.assignment.newsappnp.common.Strings;
 
 import java.lang.annotation.Target;
 import java.util.ArrayList;
@@ -19,10 +20,7 @@ import java.util.ArrayList;
  * one of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-    int mNumOfTabs = 10;
 //    @StringRes
-    private static final String[] TAB_TITLES = PageViewModel.TAB_TITLES;
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -46,7 +44,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return mNumOfTabs;
+        // Show 10 total pages.
+        return Strings.mNumOfTabs;
     }
 }

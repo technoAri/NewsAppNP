@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,13 +57,6 @@ public class PlaceholderFragment extends Fragment {
         final TextView timestamp = root.findViewById(R.id.tv_timestamp);
         final TextView readMore = root.findViewById(R.id.tv_read_more);
         final ImageView thumbnail = root.findViewById(R.id.iv_thumbnail);
-
-//        readMore.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
         pageViewModel.getTitleText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
