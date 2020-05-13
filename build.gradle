@@ -25,3 +25,11 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+apply plugin: 'checkstyle'
+
+//preBuild.dependsOn('checkstyle')
+//assemble.dependsOn('lint')
+//check.dependsOn('checkstyle')
+
+

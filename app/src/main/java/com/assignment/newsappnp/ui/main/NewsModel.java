@@ -79,7 +79,7 @@ public class NewsModel {
         this.timestamp = timestamp;
     }
 
-    public class Source{
+    public class Source {
         @SerializedName("id")
         String id;
 

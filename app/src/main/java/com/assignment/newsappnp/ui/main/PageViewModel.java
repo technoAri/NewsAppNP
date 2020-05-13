@@ -75,7 +75,6 @@ public class PageViewModel extends ViewModel {
 
     // method to store data in the static arrays in order to set them in the Fragment
     private void generateNoticeList(ArrayList<NewsModel> newsArrayList) {
-        System.out.println("NewsTitle11"+newsArrayList.get(0).getSource().name);
         for (int i = 0; i < 10; i++) {
             TAB_TITLES[i] = newsArrayList.get(i).getSource().name;
             newsTitles[i] = newsArrayList.get(i).getNewsTitle();
@@ -101,7 +100,7 @@ public class PageViewModel extends ViewModel {
         LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
-                return newsTitles[input-1];
+                return newsTitles[input - 1];
             }
         });
         return text;
@@ -111,7 +110,7 @@ public class PageViewModel extends ViewModel {
         LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
-                return newsDescriptions[input-1];
+                return newsDescriptions[input - 1];
             }
         });
         return text;
