@@ -81,7 +81,7 @@ public class NewsModel {
 
     public class Source {
         @SerializedName("id")
-        String id;
+         private String id;
 
         public String getId() {
             return id;
@@ -100,7 +100,7 @@ public class NewsModel {
         }
 
         @SerializedName("name")
-        String name;
+        private String name;
     }
 }
 

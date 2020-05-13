@@ -14,7 +14,7 @@ import com.assignment.newsappnp.Adapters.TabsPagerAdapter;
 public class MainActivity extends AppCompatActivity {
 
     // View Model
-    PageViewModel pageViewModel = new PageViewModel();
+    private PageViewModel pageViewModel = new PageViewModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

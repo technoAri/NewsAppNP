@@ -120,7 +120,7 @@ public class PageViewModel extends ViewModel {
         LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
-                return timeStamp[input-1];
+                return timeStamp[input - 1];
             }
         });
         return text;
@@ -130,7 +130,7 @@ public class PageViewModel extends ViewModel {
         LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
-                return thumbnailURL[input-1];
+                return thumbnailURL[input - 1];
             }
         });
         return text;
@@ -140,7 +140,7 @@ public class PageViewModel extends ViewModel {
         LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
-                return urlToNews[input-1];
+                return urlToNews[input - 1];
             }
         });
         return text;
@@ -150,7 +150,7 @@ public class PageViewModel extends ViewModel {
         LiveData<String> text = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
-                return author[input-1];
+                return author[input - 1];
             }
         });
         return text;
