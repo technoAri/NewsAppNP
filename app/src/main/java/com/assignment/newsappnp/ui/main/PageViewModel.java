@@ -76,7 +76,7 @@ public class PageViewModel extends ViewModel {
     // method to store data in the static arrays in order to set them in the Fragment
     private void generateNoticeList(ArrayList<NewsModel> newsArrayList) {
         for (int i = 0; i < 10; i++) {
-            TAB_TITLES[i] = newsArrayList.get(i).getSource().name;
+            TAB_TITLES[i] = newsArrayList.get(i).getSource().getName();
             newsTitles[i] = newsArrayList.get(i).getNewsTitle();
             newsDescriptions[i] = newsArrayList.get(i).getNewsDescription();
             thumbnailURL[i] = newsArrayList.get(i).getThumbnailImg();
